@@ -10,6 +10,7 @@ thefile.seek(0)
 counter = {}
 
 for i, col in enumerate(cols):
+	if col == "ROW No." or col == "ENGLISH": continue
 	outercol  = cols[i]
 	counter[outercol] = {}
 	j = i + 1
@@ -19,7 +20,8 @@ for i, col in enumerate(cols):
 		counter[outercol][innercol] = 0
 		for row in data:
 			# print row[outercol] + " " + row[innercol]
-			if row[outercol] == row[innercol]:
+			if row[outercol] == row[innercol] and row[outercol] != '':
+				#if outercol == "ROW No.": print row[outercol].find('\n')
 				counter[outercol][innercol] += 1
 		thefile.seek(0)
 		print outercol + " to " + innercol + ": " + str(counter[outercol][innercol])
